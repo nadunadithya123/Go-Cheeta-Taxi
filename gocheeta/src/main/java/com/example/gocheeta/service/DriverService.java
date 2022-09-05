@@ -13,7 +13,5 @@ public class DriverService {
 
     private DriverRepository driverRepository;
 
-    public List<Driver> findAll(){
-        return driverRepository.findAll();
-    }
+    public List<Driver> findAll(){return driverRepository.findAll();}
 }

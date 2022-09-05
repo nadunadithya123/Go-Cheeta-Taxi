@@ -56,7 +56,7 @@ public class AuthenticationController {
         driver.setPassword(driverDto.getPassword());
         driver.setRole("driver");
         driver.setBranch(driverDto.getBranch());
-        // TODO: 8/9/2022  save vehicle
+
 
         return new ResponseEntity<>(userService.saveDriver(driver),HttpStatus.CREATED);
 

@@ -1,12 +1,15 @@
 package com.example.gocheeta.service;
 
 import com.example.gocheeta.dto.JourneyDto;
+import com.example.gocheeta.model.Driver;
 import com.example.gocheeta.model.Journey;
 import com.example.gocheeta.model.Vehicle;
 import com.example.gocheeta.repository.JourneyRepository;
 import com.example.gocheeta.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -48,5 +51,5 @@ public class JourneyService {
         return journeyRepository.save(journey);
     }
 
-
+    public List<Journey> findAll(){return journeyRepository.findAll();}
 }

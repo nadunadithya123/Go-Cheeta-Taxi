@@ -62,4 +62,5 @@ public class VehicleController {
     public ResponseEntity<List<Vehicle>> findAllByTypeAndStatus(@RequestBody VehicleDto vehicleDto){
         return new ResponseEntity<>(vehicleService.findAllByTypeAndStatus(vehicleDto.getType(),vehicleDto.getStatus()),HttpStatus.ACCEPTED);
     }
+
 }
