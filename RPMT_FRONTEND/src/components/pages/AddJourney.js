@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { Link, NavLink, Redirect } from 'react-router-dom'
 import Api from '../../service/Api'
 import {Container,Row,Col} from 'react-bootstrap'
@@ -14,6 +14,7 @@ export default function AddJourney() {
 
 
     const [data, setData] = useState([])
+    const [vehicle, setVehicle] = useState([]);
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -31,6 +32,12 @@ export default function AddJourney() {
             // return <Link to="/login"></Link>
         }).catch(err=>{console.log(err)})
     }
+    useEffect(()=>{
+        Api.get("/vehicle/findAll",data).then((res)=>{
+            setVehicle(res.data);
+        }).catch(err=>{console.log(err)})
+      },[]);
+    
                 const[number1, setnumber1]=useState(0)
                 const[number2, setnumber2]=useState(120)
                 const[total, setTotal]=useState(number1*number2);
@@ -62,13 +69,16 @@ export default function AddJourney() {
                 </p> */}
                    <p>
                 <label>Vehicle</label><br/>
+                
                 <select class="form-select" name="vehicle" onChange={handleChange} aria-label="Default select example">
-                <option selected>Vehicle Type</option>
-                <option value="1">Car</option>
-                <option value="2">Van</option>
-                <option value="3">Three Wheel</option>
-                <option value="4">Bike</option>
-               
+                <option selected hidden>Select Vehicle</option>
+                {
+                    vehicle.map(value => {
+                        return(
+                            <option value={value.id}>{value.type}</option>
+                        )
+                    })
+                }
                 </select>
       </p>
                 

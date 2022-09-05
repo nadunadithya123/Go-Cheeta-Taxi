@@ -10,38 +10,52 @@ export default function ViewJourney() {
 
     const [data, setData] = useState([])
     const [haveGroup, setHaveGroup] = useState(false)
+    const [journey, setJourney] = useState([]);
+    const [drivers, setDrivers] = useState([]);
 
     useEffect(()=>{
-       if(localStorage.getItem("af-group") !== undefined){
-           setHaveGroup(false)
-
-           Api.post("/studentgroups/byId" ,{groupId : localStorage.getItem("af-group")}).then((res)=>{
-               setData(res.data)
-               setHaveGroup(true)
-               console.log(res.data)
-           }).catch((err)=>{
-               console.error(err)
-           })
-       } 
-
-
-    },[])
-
-    const handleChange = (e) => {
-        const value = e.target.value;
-        setData({
-            ...data,
-            [e.target.name]: value
-        });
-    }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const copyData = { ...data }
-        Api.post("/studentgroups/create",data).then((res)=>{
-            
-            return <Link to="/login"></Link>
+        Api.get("/journey/findAll",data).then((res)=>{
+            setJourney(res.data);
         }).catch(err=>{console.log(err)})
-    }
+      },[]);
+
+      useEffect(()=>{
+        Api.get("/driver/findAll",data).then((res)=>{
+            setDrivers(res.data);
+        }).catch(err=>{console.log(err)})
+      },[]);
+    // useEffect(()=>{
+    //    if(localStorage.getItem("af-group") !== undefined){
+    //        setHaveGroup(false)
+
+    //        Api.post("/studentgroups/byId" ,{groupId : localStorage.getItem("af-group")}).then((res)=>{
+    //            setData(res.data)
+    //            setHaveGroup(true)
+    //            console.log(res.data)
+    //        }).catch((err)=>{
+    //            console.error(err)
+    //        })
+    //    } 
+
+
+    // },[])
+
+
+    // const handleChange = (e) => {
+    //     const value = e.target.value;
+    //     setData({
+    //         ...data,
+    //         [e.target.name]: value
+    //     });
+    // }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const copyData = { ...data }
+    //     Api.post("/studentgroups/create",data).then((res)=>{
+            
+    //         return <Link to="/login"></Link>
+    //     }).catch(err=>{console.log(err)})
+    // }
 
 
     return (
@@ -55,18 +69,32 @@ export default function ViewJourney() {
           <th>ID</th>
           <th>Pickup</th>
           <th>Destination</th>
-          <th>Driver</th>
+          <th>Distance</th>
           <th>Price</th>
+          <th>Status</th>
+          <th>Vehicle</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>001</td>
-          <td>Kalutara</td>
-          <td>Colombo</td>
-          <td>DR01</td>
-          <td>200.00</td>
-        </tr>
+     
+        {
+                    journey.map(value => {
+                        return(
+                            <tr>
+                            <td>{value.id}</td>
+                            <td>{value.pickup}</td>
+                            <td>{value.destination}</td>
+                            <td>{value.distance}KM</td>
+                            <td>{value.price}</td>
+                            <td>{value.status}</td>
+                            <td>{value.price}</td>
+                            </tr>
+                           
+                        )
+                    })
+                }
+          
+       
         
       </tbody>
     </Table>

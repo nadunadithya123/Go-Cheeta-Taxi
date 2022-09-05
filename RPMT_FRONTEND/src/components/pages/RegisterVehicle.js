@@ -93,10 +93,10 @@ export default function Vehicle() {
                 }
                 </select>
       </p>
- <p>
+ {/* <p>
                     <label>Select Driver</label><br/>
                     <input type="text" name="driver" required onChange={handleChange} />
-                </p>
+                </p> */}
 
     <br></br>
                 <p>
