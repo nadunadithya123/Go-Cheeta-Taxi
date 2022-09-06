@@ -19,6 +19,7 @@ import SubmissionView from './components/pages/SubmissionView'
 import Vehicle from './components/pages/RegisterVehicle'
 import Journey from './components/pages/AddJourney'
 import ViewJourney from './components/pages/ViewJourney'
+import ManageJourney from './components/pages/ManageJourney'
 
 export default function App() {
     return (
@@ -40,6 +41,7 @@ export default function App() {
                     <Route path="/RegisterVehicle" component={Vehicle}/>
                     <Route path="/AddJourney" component={Journey}/>
                     <Route path="/ViewJourney" component={ViewJourney}/>
+                    <Route path="/ManageJourney" component={ManageJourney}/>
                 </Switch>
            
             </div>

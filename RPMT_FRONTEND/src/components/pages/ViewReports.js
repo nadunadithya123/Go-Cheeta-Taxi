@@ -3,6 +3,9 @@ import { Link, NavLink, Redirect } from 'react-router-dom'
 import Api from '../../service/Api'
 import Table from 'react-bootstrap/Table';
 
+import Card from 'react-bootstrap/Card';
+
+
 import '../../App.css'
 import NavBarCustom from '../Nav'
 
@@ -63,58 +66,43 @@ export default function ViewReports() {
 
 
     return (
+       
         <div className="text-center">
-            <NavBarCustom/>
-            
-            <Table striped bordered hover>
-      <thead>
-        <tr>
+        <NavBarCustom/>
+        <br></br>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+        <div class="card" >       
+        <div class="card-body">
+          <h5 class="card-title">Total Sales</h5>
+          <p class="card-text">{total}</p>
           
-          <th>ID</th>
-          <th>Pickup</th>
-          <th>Destination</th>
-          <th>Driver</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        {
-            journey.map(value => {
-                return(
-                    <tr>
-                        <td>
-                            {value.id}
-                        </td>
-                        <td>
-                            {value.pickup}
-                        </td>
-                        <td>
-                            {value.destination}
-                        </td>
-                        <td>
-                            
-                        </td>
-                        <td>
-                            {value.price}
-                        </td>
-                    </tr>
-                )
-            })
-        }
-        <tr>
-          <td>Total:</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>{total}</td>
-        </tr>
-        
-      </tbody>
-    </Table>
-
-            
         </div>
+      </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" >       
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          
+        </div>
+      </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" >       
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
     )
 
 }

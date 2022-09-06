@@ -15,6 +15,7 @@ export default function AddJourney() {
 
     const [data, setData] = useState([])
     const [vehicle, setVehicle] = useState([]);
+    
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -28,14 +29,18 @@ export default function AddJourney() {
         let copyData = { ...data }
         // copyData.role="STUDENT"
         Api.post("/journey/create",copyData).then((res)=>{
+            alert("Journey Sucessful");
             
             // return <Link to="/login"></Link>
-        }).catch(err=>{console.log(err)})
+        }).catch(err=>{console.log(err); alert("Journey Unsucessful");})
     }
     useEffect(()=>{
         Api.get("/vehicle/findAll",data).then((res)=>{
+            
             setVehicle(res.data);
-        }).catch(err=>{console.log(err)})
+            
+           
+        }).catch(err=>{console.log(err); })
       },[]);
     
                 const[number1, setnumber1]=useState(0)
@@ -118,7 +123,7 @@ export default function AddJourney() {
                 
                 <p>                
                     <label>Price</label><br/>
-                    <input type="price" name="price" value={total}  required onChange={handleChange}  />
+                    <input type="text" name="price" value={total}  required onChange={handleChange}  />
                 </p>
                 
                 

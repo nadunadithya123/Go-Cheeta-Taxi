@@ -30,9 +30,9 @@ const history=useHistory()
             // localStorage.setItem("af-userrole", res.data.role)
 
             setUserDetails(res.data);
-            alert("");
+            alert("Login Sucessful");
             history.push("/home")
-        }).catch(err=>{console.log(err); alert("Invalid email or password")})
+        }).catch(err=>{console.log(err); alert("Invalid username or password")})
 
     
     }

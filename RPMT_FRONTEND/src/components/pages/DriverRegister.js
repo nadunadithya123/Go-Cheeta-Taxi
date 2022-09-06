@@ -48,10 +48,10 @@ export default function Driver() {
         e.preventDefault();
         let copyData = { ...data }
         copyData.role ="driver"
-        Api.post("/auth/driver/create",copyData).then((res)=>{
-            
+        Api.post("/driver/create",copyData).then((res)=>{
+            alert("Registration Sucessful");
             // return <Link to="/login"></Link>
-        }).catch(err=>{console.log(err)})
+        }).catch(err=>{console.log(err) ;alert("Registration Unsecessful");})
     }
     
     return (
@@ -77,10 +77,10 @@ export default function Driver() {
                     <label>Username</label><br/>
                     <input type="text" name="username" required onChange={handleChange} />
                 </p>
-                <p>
+                {/* <p>
                     <label>Telephone</label><br/>
                     <input type="text" name="telephone" required onChange={handleChange} />
-                </p>
+                </p> */}
                 <p>
                     <label>Email address</label><br/>
                     <input type="email" name="email" required onChange={handleChange} />

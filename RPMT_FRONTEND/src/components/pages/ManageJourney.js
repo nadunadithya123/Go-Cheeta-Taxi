@@ -2,16 +2,18 @@ import React,{useState , useEffect} from 'react'
 import { Link, NavLink, Redirect } from 'react-router-dom'
 import Api from '../../service/Api'
 import Table from 'react-bootstrap/Table';
+import {getUserDetails} from "../../service/Roles";
 
 import '../../App.css'
 import NavBarCustom from '../Nav'
 
-export default function ViewJourney() {
+export default function ManageJourney() {
 
     const [data, setData] = useState([])
     const [haveGroup, setHaveGroup] = useState(false)
     const [journey, setJourney] = useState([]);
     const [vehicle, setVehicle] = useState([]);
+    const[role, setRole] = useState(null);
 
     useEffect(()=>{
         Api.get("/journey/findAll",data).then((res)=>{
@@ -21,10 +23,9 @@ export default function ViewJourney() {
       },[]);
 
       useEffect(()=>{
-        Api.get("/vehicle/findAll",data).then((res)=>{
-            setVehicle(res.data);
-        }).catch(err=>{console.log(err)})
+        setRole(getUserDetails().role);
       },[]);
+     
     // useEffect(()=>{
     //    if(localStorage.getItem("af-group") !== undefined){
     //        setHaveGroup(false)
@@ -67,14 +68,12 @@ export default function ViewJourney() {
       <thead>
         <tr>
           
-          <th>ID</th>
+          <th>Journey ID</th>
           <th>Pickup</th>
           <th>Destination</th>
           <th>Distance</th>
           <th>Price</th>
-          <th>Status</th>
-          <th>Vehicle</th>
-          <th>Driver</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -86,11 +85,10 @@ export default function ViewJourney() {
                             <td>{value.id}</td>
                             <td>{value.pickup}</td>
                             <td>{value.destination}</td>
-                            <td>{value.distance}KM</td>
+                            <td>{value.distance}</td>
                             <td>{value.price}</td>
-                            <td>{value.status}</td>
-                            <td>{"id - " + value.vehicle.id + "/" + "Type - " +value.vehicle.type}</td>
-                            <td>{value.vehicle.driver.userID+" "+value.vehicle.driver.fullName}</td>
+
+                            
                             
                             </tr>
                            

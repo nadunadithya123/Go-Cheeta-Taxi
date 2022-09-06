@@ -46,13 +46,13 @@ export default function NavBarCustom() {
         {(isadmin) &&  <Nav.Link href="./ViewReports" >View Reports</Nav.Link>}
         {(isadmin || iscustomer) && <Nav.Link href="./AddJourney" >Add Journey </Nav.Link>}
         {(isadmin || iscustomer) && <Nav.Link href="./ViewJourney" >View Journey</Nav.Link>}
-        {(isadmin || isdriver) && <Nav.Link href="/"  >Manage Journey</Nav.Link>}
+        {(isadmin || isdriver) && <Nav.Link href="/ManageJourney"  >Manage Journey</Nav.Link>}
 
         <span></span>
 
-        <NavDropdown title={"Hi," + getUserDetails().fullName} id="basic-nav-dropdown" >
-          <NavDropdown.Item href="./stdgroups" >Add Group</NavDropdown.Item>
-          <NavDropdown.Item href="./getgroup">My Group</NavDropdown.Item>
+        <NavDropdown title={"Hi, " + getUserDetails().fullName} id="basic-nav-dropdown" >
+          <NavDropdown.Item href="./" >Logout</NavDropdown.Item>
+          {/* <NavDropdown.Item href="./getgroup">My Group</NavDropdown.Item> */}
         </NavDropdown>
 
 
