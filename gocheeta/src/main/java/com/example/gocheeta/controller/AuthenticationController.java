@@ -43,24 +43,24 @@ public class AuthenticationController {
 
     }
 
-    @PostMapping("/driver/create")
-    public ResponseEntity<Driver> driverRegistration(@RequestBody DriverDto driverDto){
-
-        if(driverDto == null){
-
-        }
-        Driver driver = new Driver();
-        driver.setUsername(driverDto.getUsername());
-        driver.setFullName(driverDto.getFullName());
-        driver.setEmail(driverDto.getEmail());
-        driver.setPassword(driverDto.getPassword());
-        driver.setRole("driver");
-        driver.setBranch(driverDto.getBranch());
-
-
-        return new ResponseEntity<>(userService.saveDriver(driver),HttpStatus.CREATED);
-
-    }
+//    @PostMapping("/driver/create")
+//    public ResponseEntity<Driver> driverRegistration(@RequestBody DriverDto driverDto){
+//
+//        if(driverDto == null){
+//
+//        }
+//        Driver driver = new Driver();
+//        driver.setUsername(driverDto.getUsername());
+//        driver.setFullName(driverDto.getFullName());
+//        driver.setEmail(driverDto.getEmail());
+//        driver.setPassword(driverDto.getPassword());
+//        driver.setRole("driver");
+//        driver.setBranch(driverDto.getBranch());
+//
+//
+//        return new ResponseEntity<>(userService.saveDriver(driver),HttpStatus.CREATED);
+//
+//    }
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginDto loginDto){

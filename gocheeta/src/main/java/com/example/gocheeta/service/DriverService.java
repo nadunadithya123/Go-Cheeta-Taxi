@@ -14,4 +14,5 @@ public class DriverService {
     private DriverRepository driverRepository;
 
     public List<Driver> findAll(){return driverRepository.findAll();}
+    public Driver saveDriver(Driver driver){return driverRepository.save(driver);}
 }

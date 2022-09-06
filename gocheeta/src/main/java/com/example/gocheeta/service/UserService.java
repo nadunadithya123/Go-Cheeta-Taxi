@@ -25,7 +25,7 @@ public class UserService {
     }
 
     //save driver
-    public Driver saveDriver(Driver driver){return driverRepository.save(driver);}
+    //public Driver saveDriver(Driver driver){return driverRepository.save(driver);}
 
     //find by username
     public User findByUsername(String username){ return userRepository.findByUsername(username);}
