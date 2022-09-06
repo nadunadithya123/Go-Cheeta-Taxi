@@ -48,7 +48,9 @@ export default function NavBarCustom() {
         {(isadmin || iscustomer) && <Nav.Link href="./ViewJourney" >View Journey</Nav.Link>}
         {(isadmin || isdriver) && <Nav.Link href="/"  >Manage Journey</Nav.Link>}
 
-        <NavDropdown title="Student Grroup" id="basic-nav-dropdown" >
+        <span></span>
+
+        <NavDropdown title={"Hi," + getUserDetails().fullName} id="basic-nav-dropdown" >
           <NavDropdown.Item href="./stdgroups" >Add Group</NavDropdown.Item>
           <NavDropdown.Item href="./getgroup">My Group</NavDropdown.Item>
         </NavDropdown>

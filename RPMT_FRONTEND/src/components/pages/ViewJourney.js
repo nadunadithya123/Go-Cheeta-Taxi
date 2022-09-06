@@ -15,6 +15,7 @@ export default function ViewJourney() {
 
     useEffect(()=>{
         Api.get("/journey/findAll",data).then((res)=>{
+          console.log(res)
             setJourney(res.data);
         }).catch(err=>{console.log(err)})
       },[]);
@@ -87,7 +88,7 @@ export default function ViewJourney() {
                             <td>{value.distance}KM</td>
                             <td>{value.price}</td>
                             <td>{value.status}</td>
-                            <td>{value.price}</td>
+                            <td>{value.vehicle.id}</td>
                             </tr>
                            
                         )

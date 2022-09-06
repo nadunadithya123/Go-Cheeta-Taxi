@@ -10,22 +10,40 @@ export default function ViewReports() {
 
     const [data, setData] = useState([])
     const [haveGroup, setHaveGroup] = useState(false)
+    const [total, setTotal] = useState(0);
+    const [journey, setJourney] = useState([]);
 
     useEffect(()=>{
-       if(localStorage.getItem("af-group") !== undefined){
-           setHaveGroup(false)
+        Api.get("/journey/findAll",data).then((res)=>{
+          console.log(res)
+            setJourney(res.data);
+        }).catch(err=>{console.log(err)})
+      },[]);
 
-           Api.post("/studentgroups/byId" ,{groupId : localStorage.getItem("af-group")}).then((res)=>{
-               setData(res.data)
-               setHaveGroup(true)
-               console.log(res.data)
-           }).catch((err)=>{
-               console.error(err)
-           })
-       } 
+      useEffect(()=>{
+        let tot = 0;
+        journey.map(value => {
+            tot += value.price;
+        });
+        setTotal(tot);
+        
+      },[journey]);
+
+    // useEffect(()=>{
+    //    if(localStorage.getItem("af-group") !== undefined){
+    //        setHaveGroup(false)
+
+    //        Api.post("/studentgroups/byId" ,{groupId : localStorage.getItem("af-group")}).then((res)=>{
+    //            setData(res.data)
+    //            setHaveGroup(true)
+    //            console.log(res.data)
+    //        }).catch((err)=>{
+    //            console.error(err)
+    //        })
+    //    } 
 
 
-    },[])
+    // },[])
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -60,12 +78,36 @@ export default function ViewReports() {
         </tr>
       </thead>
       <tbody>
+
+        {
+            journey.map(value => {
+                return(
+                    <tr>
+                        <td>
+                            {value.id}
+                        </td>
+                        <td>
+                            {value.pickup}
+                        </td>
+                        <td>
+                            {value.destination}
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            {value.price}
+                        </td>
+                    </tr>
+                )
+            })
+        }
         <tr>
-          <td>001</td>
-          <td>Kalutara</td>
-          <td>Colombo</td>
-          <td>DR01</td>
-          <td>200.00</td>
+          <td>Total:</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{total}</td>
         </tr>
         
       </tbody>

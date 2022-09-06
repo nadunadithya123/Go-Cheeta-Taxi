@@ -40,12 +40,11 @@ export default function AddJourney() {
     
                 const[number1, setnumber1]=useState(0)
                 const[number2, setnumber2]=useState(120)
-                const[total, setTotal]=useState(number1*number2);
+                const[total, setTotal]=useState(0);
 
-           function ADD(e){
-            e.preventDefault()
-            setTotal(number1* number2);
-                    }
+        function ADD(value){
+            setTotal(value * number2);
+        }
                     
 
     return (
@@ -108,18 +107,18 @@ export default function AddJourney() {
       
       <p>
                 <label>KM</label><br/>
-                <input type="number" name="distance"   required onChange={handleChange} />
+                <input type="number" name="distance"   required onChange={(e) => {handleChange(e); ADD(e.target.value)}} />
                 </p>
                 <div class ='hello'>
-                <p>
+                {/* <p>
                     <button id="sub_btn"  onClick={ADD}>Calculate</button>
-                </p>
+                </p> */}
                 </div>
                 
                 
                 <p>                
                     <label>Price</label><br/>
-                    <input type="price" name="price"   required onChange={handleChange}  />
+                    <input type="price" name="price" value={total}  required onChange={handleChange}  />
                 </p>
                 
                 
