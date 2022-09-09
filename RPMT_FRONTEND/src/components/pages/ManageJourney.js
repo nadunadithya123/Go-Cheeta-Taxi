@@ -25,7 +25,10 @@ export default function ManageJourney() {
       useEffect(()=>{
         setRole(getUserDetails().role);
       },[]);
-     
+
+      function alert2(){
+        alert("Journey Accepted");
+    }
     // useEffect(()=>{
     //    if(localStorage.getItem("af-group") !== undefined){
     //        setHaveGroup(false)
@@ -73,6 +76,7 @@ export default function ManageJourney() {
           <th>Destination</th>
           <th>Distance</th>
           <th>Price</th>
+          <th>Action</th>
           
         </tr>
       </thead>
@@ -80,19 +84,18 @@ export default function ManageJourney() {
      
         {
                     journey.map(value => {
+                      if(getUserDetails().userID == value.vehicle.driver.userID) {
                         return(
-                            <tr>
-                            <td>{value.id}</td>
-                            <td>{value.pickup}</td>
-                            <td>{value.destination}</td>
-                            <td>{value.distance}</td>
-                            <td>{value.price}</td>
-
-                            
-                            
-                            </tr>
-                           
-                        )
+                          <tr>
+                          <td>{value.id}</td>
+                          <td>{value.pickup}</td>
+                          <td>{value.destination}</td>
+                          <td>{value.distance}</td>
+                          <td>{value.price}</td>
+                          <td><button type="button" class="btn btn-primary" onClick={alert2}>Accept</button></td>
+                          </tr>                         
+                      )
+                      }
                     })
                 }
           

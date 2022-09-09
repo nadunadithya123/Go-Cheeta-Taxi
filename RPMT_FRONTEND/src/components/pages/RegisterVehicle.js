@@ -26,9 +26,9 @@ export default function Vehicle() {
         let copyData = { ...data }
         // copyData.role="STUDENT"
         Api.post("/vehicle/create",copyData).then((res)=>{
-            
+            alert("Vehicle Created");
             // return <Link to="/login"></Link>
-        }).catch(err=>{console.log(err)})
+        }).catch(err=>{console.log(err); alert("Vehicle Created");})
     }
 
     useEffect(()=>{

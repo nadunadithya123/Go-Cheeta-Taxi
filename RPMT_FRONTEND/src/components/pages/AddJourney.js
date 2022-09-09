@@ -24,11 +24,16 @@ export default function AddJourney() {
             [e.target.name]: value
         });
     }
+
+    useEffect(()=>{
+        console.log(data);
+    },[data])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        let copyData = { ...data }
+        // let copyData = { ...data }
         // copyData.role="STUDENT"
-        Api.post("/journey/create",copyData).then((res)=>{
+        Api.post("/journey/create",data).then((res)=>{
             alert("Journey Sucessful");
             
             // return <Link to="/login"></Link>
@@ -52,6 +57,9 @@ export default function AddJourney() {
         }
                     
 
+        useEffect(()=>{
+            setData({...data, price:total});
+        },[total])
     return (
         
 <div className="text-center">
@@ -112,7 +120,7 @@ export default function AddJourney() {
       
       <p>
                 <label>KM</label><br/>
-                <input type="number" name="distance"   required onChange={(e) => {handleChange(e); ADD(e.target.value)}} />
+                <input type="number" name="distance"   required onChange={(e) => {handleChange(e); ADD(e.target.value);}} />
                 </p>
                 <div class ='hello'>
                 {/* <p>
@@ -123,7 +131,7 @@ export default function AddJourney() {
                 
                 <p>                
                     <label>Price</label><br/>
-                    <input type="text" name="price" value={total}  required onChange={handleChange}  />
+                    <input type="text" value={total}  required />
                 </p>
                 
                 

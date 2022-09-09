@@ -46,7 +46,7 @@ export default function NavBarCustom() {
         {(isadmin) &&  <Nav.Link href="./ViewReports" >View Reports</Nav.Link>}
         {(isadmin || iscustomer) && <Nav.Link href="./AddJourney" >Add Journey </Nav.Link>}
         {(isadmin || iscustomer) && <Nav.Link href="./ViewJourney" >View Journey</Nav.Link>}
-        {(isadmin || isdriver) && <Nav.Link href="/ManageJourney"  >Manage Journey</Nav.Link>}
+        {(isdriver) && <Nav.Link href="/ManageJourney"  >Manage Journey</Nav.Link>}
 
         <span></span>
 
