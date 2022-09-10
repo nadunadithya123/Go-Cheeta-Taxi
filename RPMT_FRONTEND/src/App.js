@@ -21,6 +21,7 @@ import Journey from './components/pages/AddJourney'
 import ViewJourney from './components/pages/ViewJourney'
 import ManageJourney from './components/pages/ManageJourney'
 
+
 export default function App() {
     return (
         <Router>
@@ -41,6 +42,7 @@ export default function App() {
                     <Route path="/AddJourney" component={Journey}/>
                     <Route path="/ViewJourney" component={ViewJourney}/>
                     <Route path="/ManageJourney" component={ManageJourney}/>
+                  
                 </Switch>
            
             </div>

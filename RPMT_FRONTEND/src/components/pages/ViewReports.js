@@ -15,6 +15,7 @@ export default function ViewReports() {
     const [haveGroup, setHaveGroup] = useState(false)
     const [total, setTotal] = useState(0);
     const [journey, setJourney] = useState([]);
+    const [vehicle, setVehicle] = useState([]);
 
     useEffect(()=>{
         Api.get("/journey/findAll",data).then((res)=>{
@@ -47,6 +48,15 @@ export default function ViewReports() {
 
 
     // },[])
+    useEffect(()=>{
+      Api.get("/vehicle/findAll",data).then((res)=>{
+          
+          setVehicle(res.data);
+          
+          
+         
+      }).catch(err=>{console.log(err); })
+    },[]);
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -55,14 +65,14 @@ export default function ViewReports() {
             [e.target.name]: value
         });
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const copyData = { ...data }
-        Api.post("/studentgroups/create",data).then((res)=>{
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const copyData = { ...data }
+    //     Api.post("/studentgroups/create",data).then((res)=>{
             
-            return <Link to="/login"></Link>
-        }).catch(err=>{console.log(err)})
-    }
+    //         return <Link to="/login"></Link>
+    //     }).catch(err=>{console.log(err)})
+    // }
 
 
     return (
@@ -85,7 +95,7 @@ export default function ViewReports() {
         <div class="card" >       
         <div class="card-body">
           <h5 class="card-title">Number of Vehicles</h5>
-          <p class="card-text">22</p>
+          <p class="card-text"></p>
           
         </div>
       </div>
@@ -94,13 +104,47 @@ export default function ViewReports() {
         <div class="card" >       
         <div class="card-body">
           <h5 class="card-title">Drivers</h5>
-          <p class="card-text">56</p>
+          <p class="card-text"></p>
           
         </div>
       </div>
       </div>
       </div>
       </div>
+      <br></br>
+      <Table striped bordered hover>
+      <thead>
+        <tr>
+          
+          <th>ID</th>
+          <th>Number Plate</th>
+          <th>Status</th>
+          <th>Driver</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+     
+        {
+                    vehicle.map(value => {
+                        return(
+                            <tr>
+                            <td>{value.id}</td>
+                            <td>{value.numberPlate}</td>
+                            <td>{value.status}</td>
+                            <td>{value.driver.userID}</td>
+                            
+                            
+                            </tr>
+                           
+                        )
+                    })
+                }
+          
+       
+        
+      </tbody>
+    </Table>
       </div>
 
     )
