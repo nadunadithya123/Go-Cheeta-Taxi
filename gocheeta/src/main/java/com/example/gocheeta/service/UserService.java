@@ -24,13 +24,13 @@ public class UserService {
         return customerRepository.save(customer);
     }
 
-    //save driver
+
     //public Driver saveDriver(Driver driver){return driverRepository.save(driver);}
 
-    //find by username
+
     public User findByUsername(String username){ return userRepository.findByUsername(username);}
 
-    //find by id
+
     public Driver findById(long id){
         User u =  userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
         Driver driver = (Driver) u;
